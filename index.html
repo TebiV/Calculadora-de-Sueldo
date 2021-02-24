@@ -11,30 +11,40 @@
     <header>
         <h1> Bienvenido a la calculadora de sueldos</h1>
     </header>
+    <!-- El onSubmit false, es para que muestre el resultado y no actualice la pagina-->
     <main onsubmit="return false;">
 
-            <label for="nombre-usuario"> NOMBRE </label><br>
-            <input type="text" id="nombre-usuario" placeholder="Ingrese su nombre"><br>
+        <!-- Puse label (Texto de arriba de cada input), en la misma linea solo para acortar codigo-->
+        <!-- Input de nombre-->
+            <label for="nombre-usuario"> NOMBRE </label><br><input type="text" id="nombre-usuario" placeholder="Ingrese su nombre"><br>
          
-            <label for="apellido-usuario"> APELLIDO </label><br>
-            <input type="text" name="apellido-usuario" id="apellido-usuario" placeholder="Ingrese su apellido"><br>
+            <!-- Input de apellido-->
+            <label for="apellido-usuario"> APELLIDO </label><br><input type="text" name="apellido-usuario" id="apellido-usuario" placeholder="Ingrese su apellido"><br>
+ 
+            <!-- Input de dni-->
+            <label for="dni-usuario"> DNI </label><br><input type="number" name="dni-usuario" id="dni-usuario" placeholder="Ingrese su DNI"><br>
+ 
+             <!-- Input de sueldo-->
+            <label for="sueldo-usuario"> SUELDO </label><br><input type="number" name="sueldo-usuario" id="sueldo-usuario" placeholder="Ingrese su sueldo"> <br>
 
-            <label for="dni-usuario"> DNI </label><br>
-            <input type="number" name="dni-usuario" id="dni-usuario" placeholder="Ingrese su DNI"><br>
-        
-            <label for="sueldo-usuario"> SUELDO </label><br>
-            <input type="number" name="sueldo-usuario" id="sueldo-usuario" placeholder="Ingrese su sueldo"> <br>
-            <label for="opcion-calculo"> TIPO DE SUELDO A CALCULAR</label><br>
+
+             <!-- Input de tipo de calculo-->
+            <label for="opcion-calculo"> TIPO DE SUELDO A CALCULAR</label><br>             
+            <!-- CREO que el form es inecesario, probar borrarlo-->
             <form class="opcion-calculo">
-
+                 <!-- radio mensual-->
                 <input class="boton-calculo" type="radio" name="opcionCalculo" id="sueldo-mensual" value="sueldo-mensual" checked="checked">
                 <label class="boton-calculo" for="sueldo-mensual"> Sueldo Mensual</label><br>
-                
+                <!-- radio Anual-->
                 <input class="boton-calculo" type="radio" name="opcionCalculo" id="sueldo-anual" value="sueldo-anual" >
                 <label class="boton-calculo" for="sueldo-anual"> Sueldo Anual</label>
             </form>
           
+
+            <!-- Boton para enviar los datos a JS-->
             <button type="submit" name="calcular-sueldo" class="calcular-sueldo">Calcular sueldo</button>
+
+            <!-- Div con class, vacio PARA COMPLETAR CON JS AL ACTUALIZAR-->
             <div class="resultado"></div>
     </main>
     <script src="index.js"></script>
