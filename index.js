@@ -13,9 +13,26 @@ botonCalcularSueldo.onclick = function(){
     if ($tipoCalculo === 'true'){$tipoCalculo = 'mensual';}else{$tipoCalculo = 'anual';}
     const $dniUsuario = Number(document.querySelector('#dni-usuario').value);
     //Importa el resultado
-    resultadoCalculo = document.querySelector('.resultado')
-    
 
+
+    //Creo el elemento de resultado y le doy atributos de css.
+    let resultadoCalculo = null;
+    resultadoCalculo = document.createElement('div');
+    resultadoCalculo.className = 'resultado';
+    resultadoCalculo.style.background= "#cecece";
+    resultadoCalculo.style.color = "black";
+    resultadoCalculo.style.padding = "20px";
+    resultadoCalculo.style.marginTop = "20px";
+    resultadoCalculo.style.borderRadius = "20px";
+    //Creo el boton limpiar para luego utilizarlo si es necesario.
+    limpiar = document.createElement('button');
+    limpiar.type = 'reset';
+    limpiar.innerText = "Limpiar";
+    limpiar.className= "limpiar";
+
+
+
+    
     
     //Funcion que realiza el calculo SOLO si estan los datos.
     if ($sueldoUsuario != false && $nombreUsuario !== false && $dniUsuario != false && $apellidoUsuario !== false){
@@ -28,18 +45,37 @@ botonCalcularSueldo.onclick = function(){
         else{
             sueldoResultadoText = sueldoResultadoText + `anual es ${$sueldoUsuario*12}`;
         };
+        document.querySelector('.calcular-sueldo').disabled=true;
         
-        //Actualiza el resultado.
+        
+        //Agrega el boton limpiar y actualiza el resultado.
         resultadoCalculo.innerText = sueldoResultadoText;
-        resultadoCalculo.style.background= "#cecece";
-        resultadoCalculo.style.color = "black";
-        resultadoCalculo.style.padding = "20px";
+        document.querySelector('main').appendChild(limpiar);
+
     }
     //Funcion que avisa que faltan datos.
     else{
-        resultadoCalculo.innerText = "Verifique los datos";
-        resultadoCalculo.style.color = "red";
+            resultadoCalculo.innerText = "Verifique los datos.";
+            resultadoCalculo.style.color = "red";
+            //Desactivo boton
+            document.querySelector('.calcular-sueldo').disabled=true;
+            //Activo el boton y borro la alerta
+            setTimeout(function(){
+                document.querySelector('main').removeChild(resultadoCalculo);
+                document.querySelector('.calcular-sueldo').disabled=false;
+                
+            },3000)
     }
+    //Agrega el resultado en el sector inferior de la web
+    document.querySelector('main').appendChild(resultadoCalculo);
+
+    //Si se aprieta el boton limpar, recarga la pagina.
+    document.querySelector('.limpiar').onclick = function(){
+        location.reload();
+        return false;
+    }
+    
+  
     return false;
 };
 
